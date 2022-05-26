@@ -151,7 +151,12 @@ async function run() {
             res.send(updatedOrder);
         })
 
-
+        // Add a Review collection
+        app.post('/review', async (req, res) => {
+            const review = req.body;
+            const result = await ReviewCollection.insertOne(review);
+            res.send(result);
+        });
 
         // All reviews collection
         app.get('/review', async (req, res) => {
