@@ -166,19 +166,7 @@ async function run() {
             res.send(reviews);
         })
 
-        // My Profile
-        app.get('/myProfile', verifyJwt, async (req, res) => {
-            const email = req.query.email
-            const decodedEmail = req.decoded.email
-            if (decodedEmail) {
-                const query = { email: email }
-                const profiles = await ProfileCollection.find(query).toArray()
-                return res.send(profiles)
-            }
-            else {
-                return res.status(403).send({ message: "Forbidden Access" })
-            }
-        })
+
 
         // Add Profile
         app.post('/addProfile', async (req, res) => {
