@@ -187,26 +187,7 @@ async function run() {
             res.send(result);
         });
 
-        // update profile 
-        app.put('/myProfile', async (req, res) => {
-            const email = req.query.email
-            const UpdateProfile = req.body;
-            const filter = { email: email };
-            const options = { upsert: true };
-            const updatedDoc = {
-                $set: {
-                    education: UpdateProfile.education,
-                    location: UpdateProfile.location,
-                    phone: UpdateProfile.phone,
-                    linkedIn: UpdateProfile.linkedIn,
-                    github: UpdateProfile.github,
-                    img: UpdateProfile.img
-                }
-            };
-            const result = await ProfileCollection.updateOne(filter, updatedDoc, options);
-            res.send(result);
 
-        })
 
         // UseAdmin
         app.get('/admin/:email', async (req, res) => {
