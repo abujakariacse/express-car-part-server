@@ -134,22 +134,7 @@ async function run() {
             res.send({ clientSecret: paymentIntent.client_secret })
         });
 
-        // pay paid api
-        app.patch('/myOrder/:id', verifyJwt, async (req, res) => {
-            const id = req.params.id;
-            const payment = req.body;
-            const filter = { _id: ObjectId(id) };
-            const updatedDoc = {
-                $set: {
-                    paid: true,
-                    transactionId: payment.transactionId
-                }
-            }
 
-            const result = await paymentCollection.insertOne(payment);
-            const updatedOrder = await OrderCollection.updateOne(filter, updatedDoc);
-            res.send(updatedOrder);
-        })
 
         // Add a Review collection
         app.post('/review', async (req, res) => {
